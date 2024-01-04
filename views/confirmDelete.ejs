@@ -1,0 +1,32 @@
+<!-- confirmDelete.ejs -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        Swal.fire({
+            title: 'Are you sure you want to delete <%= userName %>?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to the delete route
+                window.location.href = '/delete-confirm/<%= userId %>';
+            } else {
+                // Redirect to another route or display a message
+                window.location.href = '/delete-cancel';
+            }
+        });
+    </script>
+
+</body>
+</html>

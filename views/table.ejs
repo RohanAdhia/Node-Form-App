@@ -1,0 +1,52 @@
+<!-- table.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Data View</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Include SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+</head>
+<body>
+  <br>
+  <a href="/">Go back</a>
+  <br><br>  
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <!-- Add more columns as needed -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+        <td><%= user.age %></td>
+        <td><%= user.gender %></td>
+        <!-- Add more data columns as needed -->
+        <td>
+          <!-- Edit button with a link to the edit route -->
+          <a href="/edit/<%= user._id %>" class="action-button">Edit</a>
+          
+          <!-- Delete button with a form to submit the delete action -->
+          <form action="/delete" method="post" style="display:inline;">
+            <input type="hidden" name="userId" value="<%= user._id %>">
+            <button type="submit" class="action-button">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+</html>

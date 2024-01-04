@@ -1,0 +1,48 @@
+<!-- editForm.ejs -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Edit User</title>
+</head>
+
+<body>
+    <h1 id="title" class="center">Edit User</h1>
+    <div class="center">
+    <form action="/edit/<%= user._id %>" method="post" class="form-block">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%= user ? user.name : '' %>" required>
+      </div>    
+
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" class="input"  value="<%= user ? user.email : '' %>" required>
+      </div>
+
+      <div>
+        <label for="age">Age:</label>
+        <input type="number" min="1" max="100" id="age" name="age" class="input" value="<%= user ? user.age : '' %>" required>
+      </div>
+
+      <div>
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" class="input" required>
+            <option value="" <% if (!user || user.gender === '') { %>selected<% } %>></option>
+            <option value="male" <% if (user && user.gender === 'male') { %>selected<% } %>>Male</option>
+            <option value="female" <% if (user && user.gender === 'female') { %>selected<% } %>>Female</option>
+            <option value="other" <% if (user && user.gender === 'other') { %>selected<% } %>>Other</option>
+          </select>
+      </div>
+      <input type="submit" value="Update">
+    </form>
+    <br> <br>
+    <a href="/view" class="action-button">Cancel</a>
+    <br><br>
+  </div>
+</body>
+
+</html>
